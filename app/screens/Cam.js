@@ -6,6 +6,7 @@ import * as MediaLibrary from 'expo-media-library'
 import * as ImagePicker from 'expo-image-picker'
 import { MyContext } from '../utils/contextManager'
 import { saveImgToCache, getImg } from '../utils/fileManager'
+import * as FileSystem from 'expo-file-system'
 
 export default function Cam({ navigation }) {
   const [state, dispatch] = useContext(MyContext)
@@ -23,11 +24,21 @@ export default function Cam({ navigation }) {
 
       const id = await saveImgToCache(data.uri)
       const imgUri = await getImg(id)
+
+      let option = {
+        uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+        fieldName: 'image',
+        mimeType: 'image/png'
+      }
+      const res = await FileSystem.uploadAsync('http://123.56.93.179:5000/predict', data.uri, option)
+
+      // 生成报告
       const report = {
         id: id,
-        dogName: 'TestDog', // TODO: recognize dog algorithem
+        res: res.body,
         imageUri: imgUri
       }
+
       navigation.navigate('Report', { ...report })
     }
   }
@@ -42,19 +53,26 @@ export default function Cam({ navigation }) {
     }
     let result = await ImagePicker.launchImageLibraryAsync(options)
 
+    let option = {
+      uploadType: FileSystem.FileSystemUploadType.MULTIPART,
+      fieldName: 'image',
+      mimeType: 'image/png'
+    }
+    const res = await FileSystem.uploadAsync('http://123.56.93.179:5000/predict', result.uri, option)
+
     if (!result.cancelled) {
       const id = await saveImgToCache(result.uri)
       const imgUri = await getImg(id)
       const report = {
         id: id,
-        dogName: 'TestDog', // TODO: recognize dog algorithem
+        res: res.body,
         imageUri: imgUri
       }
       navigation.navigate('Report', { ...report })
     }
   }
 
-  // request camera and ImagePicker permission
+  // 请求 camera and ImagePicker 允许
   useEffect(() => {
     ;(async () => {
       const { status: status1 } = await Camera.requestCameraPermissionsAsync()
@@ -81,13 +99,13 @@ export default function Cam({ navigation }) {
           camera.current = ref
         }}
       >
-        {/* close button */}
+        {/* 关闭按钮 */}
         <View style={styles.buttonStartContainer}>
           <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
             <AntDesign name="close" size={24} color="white" />
           </TouchableOpacity>
         </View>
-        {/* flip button */}
+        {/* 反转按钮 */}
         <View style={styles.buttonEndContainer}>
           <TouchableOpacity
             style={styles.button}
@@ -97,11 +115,11 @@ export default function Cam({ navigation }) {
           >
             <AntDesign name="sync" size={24} color="white" />
           </TouchableOpacity>
-          {/* take photo button */}
+          {/* 拍照按钮 */}
           <TouchableOpacity style={styles.button} onPress={takePicture}>
             <Entypo name="circle" size={36} color="white" />
           </TouchableOpacity>
-          {/* album image picker button */}
+          {/* 相册选择按钮 */}
           <TouchableOpacity style={styles.button} onPress={pickImage}>
             <Entypo name="plus" size={24} color="white" />
           </TouchableOpacity>

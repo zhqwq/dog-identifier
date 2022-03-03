@@ -12,7 +12,7 @@ export default function Home({ route, Navigation }) {
   const [refreshing, setRefreshing] = useState(false)
   const { isDarkMode } = state
 
-  // 触发下拉刷新时的回调函数
+  // 下拉刷新时, 重新获取数据并刷新页面
   const onRefresh = useCallback(async () => {
     setRefreshing(true)
     try {
@@ -23,7 +23,7 @@ export default function Home({ route, Navigation }) {
     }
   }, [refreshing])
 
-  // 获取listData并Refresh
+  // 获取listData, item
   const getData = async () => {
     try {
       let keys = []
@@ -41,7 +41,7 @@ export default function Home({ route, Navigation }) {
     }
   }
 
-  // 清除所有数据
+  // 删除所有数据
   const deleteAllData = async () => {
     let keys = []
     keys = await AsyncStorage.getAllKeys()
@@ -53,14 +53,14 @@ export default function Home({ route, Navigation }) {
     getData()
   }, [])
 
-  const Item = ({ dogName, imageUri }) => (
+  const Item = ({ dogName, imageUri, probability }) => (
     <View style={[styles.listItem, isDarkMode ? darkStyles.darkListItem : lightStyles.lightListItem]}>
       <Image style={{ width: 70, height: 70, borderRadius: 50 }} source={{ uri: imageUri }} />
       <Text style={[isDarkMode ? darkStyles.darkText : lightStyles.lightText, { marginLeft: 20 }]}>{dogName}</Text>
     </View>
   )
-
-  const renderItem = ({ item }) => <Item dogName={item.dogName} imageUri={item.imageUri} />
+  // item: id, res, imagUri
+  const renderItem = ({ item }) => <Item dogName={JSON.parse(item.res).predictions[0].label} imageUri={item.imageUri} />
 
   return (
     <View style={[styles.container, isDarkMode ? darkStyles.darkContainer : lightStyles.lightContainer]}>

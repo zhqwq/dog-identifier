@@ -1,5 +1,6 @@
 /**
  * use fileManager to manage dog breed reports
+ * 文件管理
  */
 import * as FileSystem from 'expo-file-system'
 import { uuid } from './uuid'
@@ -23,12 +24,12 @@ async function ensureDirExists() {
 export async function saveImgToCache(uri) {
   try {
     await ensureDirExists()
-    console.log('Saving image')
-    const id = uuid()
+    console.log('正在保存图片到本地...')
+    const id = uuid() // 生成uuid
     await FileSystem.copyAsync({ from: uri, to: reportsDir + `report_img_${id}.png` })
     return id
   } catch (e) {
-    console.error("Couldn't save image files:", e)
+    console.error('Error: savaImgToCache 保存图片出错', e)
   }
 }
 

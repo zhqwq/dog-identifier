@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { View, Switch, Text } from 'react-native'
+import SettingCell from '../components/SettingCell'
 import darkStyles from '../styles/darkStyles'
 import lightStyles from '../styles/lightStyles'
 import styles from '../styles'
@@ -19,14 +20,8 @@ export default function Settings() {
 
   return (
     <View style={[styles.container, isDarkMode ? darkStyles.darkContainer : lightStyles.lightContainer]}>
-      <View style={[styles.cell, isDarkMode ? darkStyles.darkCell : lightStyles.lightCell]}>
-        <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>Image compression</Text>
-        <Switch trackColor={{ false: '#3e3e3e', true: '#81b0ff' }} thumbColor={isImgCprs ? '#f5dd4b' : '#f4f3f4'} ios_backgroundColor="#3e3e3e" onValueChange={toggleImgCprsSwitch} value={isImgCprs} />
-      </View>
-      <View style={[styles.cell, isDarkMode ? darkStyles.darkCell : lightStyles.lightCell]}>
-        <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>Dark Mode</Text>
-        <Switch trackColor={{ false: '#3e3e3e', true: '#81b0ff' }} thumbColor={isDarkMode ? '#f5dd4b' : '#f4f3f4'} ios_backgroundColor="#3e3e3e" onValueChange={toggleDarkModeSwitch} value={isDarkMode} />
-      </View>
+      <SettingCell text={'Image Compression'} onValueChange={toggleImgCprsSwitch} value={isImgCprs} />
+      <SettingCell text={'Dark Mode'} onValueChange={toggleDarkModeSwitch} value={isDarkMode} />
     </View>
   )
 }
