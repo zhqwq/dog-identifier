@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 // 组件
-import { Text, View, Image } from 'react-native'
+import { Text, View, Image, Dimensions } from 'react-native'
 // 存储
 import AsyncStorage from '@react-native-async-storage/async-storage'
 // 样式
@@ -8,6 +8,7 @@ import darkStyles from '../styles/darkStyles'
 import lightStyles from '../styles/lightStyles'
 // 全局变量
 import { MyContext } from '../utils/contextManager'
+import { BarChart } from 'react-native-chart-kit'
 
 // Report: 使用Camera或者选择照片后的跳转页
 export default function Report({ route }) {
@@ -25,15 +26,45 @@ export default function Report({ route }) {
   }, [])
 
   let data = JSON.parse(res)
+  let labels = data.predictions.map(val => val.label)
+  let probs = data.predictions.map(val => (100 * val.prop).toFixed(2))
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      <Image style={{ height: 300, width: 300 }} source={{ uri: imageUri }}></Image>
+      <Image style={{ height: 250, width: 250 }} source={{ uri: imageUri }}></Image>
+      <BarChart
+        data={{
+          labels: labels,
+          datasets: [
+            {
+              data: probs
+            }
+          ]
+        }}
+        width={Dimensions.get('window').width - 16}
+        height={250}
+        yAxisLabel={'%'}
+        chartConfig={{
+          backgroundColor: '#1cc910',
+          backgroundGradientFrom: '#eff3ff',
+          backgroundGradientTo: '#efefef',
+          decimalPlaces: 2,
+          color: (opacity = 1) => `rgba(0, 0, 0, ${opacity})`,
+          style: {
+            borderRadius: 16
+          }
+        }}
+        style={{
+          marginVertical: 8,
+          borderRadius: 16
+        }}
+      />
       {data.predictions.map((val, index) => {
         return (
           <View key={index}>
-            <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>Dog Name {val.label}</Text>
-            <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>Probability {(100 * val.prop).toFixed(2) + '%'}</Text>
+            <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>
+              {val.label} {(100 * val.prop).toFixed(2) + '%'}
+            </Text>
           </View>
         )
       })}
