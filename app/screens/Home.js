@@ -59,6 +59,7 @@ export default function Home({ route, Navigation }) {
       <Text style={[isDarkMode ? darkStyles.darkText : lightStyles.lightText, { marginLeft: 20 }]}>{dogName}</Text>
     </View>
   )
+
   // item: id, res, imagUri
   const renderItem = ({ item }) => <Item dogName={JSON.parse(item.res).predictions[0].label} imageUri={item.imageUri} />
 

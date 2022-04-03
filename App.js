@@ -1,5 +1,4 @@
-// In App.js in a new project
-import React, { useEffect, useState, useReducer } from 'react'
+import React, { useReducer } from 'react'
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { Ionicons } from '@expo/vector-icons'
@@ -25,6 +24,7 @@ const reducer = (state, action) => {
 const Tab = createBottomTabNavigator()
 const Stack = createNativeStackNavigator()
 
+// Root component screen for Stack Navigator
 function Root() {
   return (
     <Tab.Navigator
