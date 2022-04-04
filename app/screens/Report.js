@@ -1,14 +1,14 @@
 import React, { useEffect, useContext } from 'react'
-// 组件
+// Components
 import { Text, View, Image, Dimensions } from 'react-native'
-// 存储
+import { BarChart } from 'react-native-chart-kit'
+// Storage
 import AsyncStorage from '@react-native-async-storage/async-storage'
-// 样式
+// styles
 import darkStyles from '../styles/darkStyles'
 import lightStyles from '../styles/lightStyles'
-// 全局变量
+// Global variables
 import { MyContext } from '../utils/contextManager'
-import { BarChart } from 'react-native-chart-kit'
 
 // Report: 使用Camera或者选择照片后的跳转页
 export default function Report({ route }) {
