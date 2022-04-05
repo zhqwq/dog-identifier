@@ -1,22 +1,19 @@
 import React, { useEffect, useContext } from 'react'
-// Components
-import { Text, View, Image, Dimensions } from 'react-native'
+import { Text, View, Image, Dimensions, Platform, Button } from 'react-native'
 import { BarChart } from 'react-native-chart-kit'
-// Storage
 import AsyncStorage from '@react-native-async-storage/async-storage'
-// styles
 import darkStyles from '../styles/darkStyles'
 import lightStyles from '../styles/lightStyles'
-// Global variables
 import { MyContext } from '../utils/contextManager'
+import * as Sharing from 'expo-sharing'
 
 // Report: 使用Camera或者选择照片后的跳转页
 export default function Report({ route }) {
   const [state, dispatch] = useContext(MyContext)
   const { isDarkMode } = state
-  const { imageUri, res, id } = route.params
+  const { imageUri, res, id } = route.params // 获得参数
 
-  // 将id作为key, 将数据保存在AsyncStorage中
+  // 将id作为key, 将参数保存在AsyncStorage中
   const storeReport = async () => {
     await AsyncStorage.setItem(id, JSON.stringify(route.params))
   }
@@ -28,6 +25,15 @@ export default function Report({ route }) {
   let data = JSON.parse(res)
   let labels = data.predictions.map(val => val.label)
   let probs = data.predictions.map(val => (100 * val.prop).toFixed(2))
+
+  let openShareDialogAsync = async () => {
+    if (Platform.OS === 'web') {
+      alert(`Uh oh, sharing isn't available on your platform`)
+      return
+    }
+
+    await Sharing.shareAsync(imageUri)
+  }
 
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -68,6 +74,7 @@ export default function Report({ route }) {
           </View>
         )
       })}
+      <Button onPress={openShareDialogAsync} title="Share" color="#841584" />
     </View>
   )
 }

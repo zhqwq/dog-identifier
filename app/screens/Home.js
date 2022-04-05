@@ -60,7 +60,7 @@ export default function Home({ route, Navigation }) {
     </View>
   )
 
-  // item: id, res, imagUri
+  // item: id, res, imagUri // 选取概率最高的预测结果作为狗狗名字
   const renderItem = ({ item }) => <Item dogName={JSON.parse(item.res).predictions[0].label} imageUri={item.imageUri} />
 
   return (
