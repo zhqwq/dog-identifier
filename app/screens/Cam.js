@@ -21,7 +21,6 @@ export default function Cam({ navigation }) {
       const options = { quality: state.isImgCprs ? 0 : 1 }
       const data = await camera.current.takePictureAsync(options)
       await MediaLibrary.saveToLibraryAsync(data.uri) // 保存到相册中
-
       const id = await saveImgToCache(data.uri) // 保存到App安装目录下，返回uuid
       const imgUri = await getImg(id) // 根据id获得图片地址
 
@@ -30,7 +29,6 @@ export default function Cam({ navigation }) {
         fieldName: 'image',
         mimeType: 'image/png'
       }
-
       const res = await FileSystem.uploadAsync('http://123.56.93.179:5000/predict', data.uri, option)
 
       // 生成报告
@@ -52,13 +50,15 @@ export default function Cam({ navigation }) {
       aspect: [4, 3],
       quality: state.isImgCprs ? 0 : 1
     }
+
     let result = await ImagePicker.launchImageLibraryAsync(options)
 
     let option = {
       uploadType: FileSystem.FileSystemUploadType.MULTIPART,
-      fieldName: 'image',
-      mimeType: 'image/png'
+      fieldName: 'image', // post method, body in form-data and key = image, value = image file
+      mimeType: 'image/png' // png format
     }
+
     const res = await FileSystem.uploadAsync('http://123.56.93.179:5000/predict', result.uri, option)
 
     if (!result.cancelled) {

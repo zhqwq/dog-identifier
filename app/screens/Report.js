@@ -24,7 +24,7 @@ export default function Report({ route }) {
 
   let data = JSON.parse(res)
   let labels = data.predictions.map(val => val.label)
-  let probs = data.predictions.map(val => (100 * val.prop).toFixed(2))
+  let probs = data.predictions.map(val => (100 * val.prob).toFixed(2))
 
   let openShareDialogAsync = async () => {
     if (Platform.OS === 'web') {
@@ -69,7 +69,7 @@ export default function Report({ route }) {
         return (
           <View key={index}>
             <Text style={isDarkMode ? darkStyles.darkText : lightStyles.lightText}>
-              {val.label} {(100 * val.prop).toFixed(2) + '%'}
+              {val.label} {(100 * val.prob).toFixed(2) + '%'}
             </Text>
           </View>
         )
