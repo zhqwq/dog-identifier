@@ -72,7 +72,7 @@ export default function Cam({ navigation }) {
     }
   }
 
-  // 请求 camera and ImagePicker 允许
+  // 请求 camera 和 ImagePicker 权限
   useEffect(() => {
     ;(async () => {
       const { status: status1 } = await Camera.requestCameraPermissionsAsync()

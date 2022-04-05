@@ -10,6 +10,7 @@ import { MyContext } from './app/utils/contextManager.js'
 import settings from './app/configs/settings.json'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
+// 定义 context 的 reducer
 const reducer = (state, action) => {
   switch (action.type) {
     case 'switchDarkMode':
@@ -54,7 +55,7 @@ function Root() {
 }
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, settings)
+  const [state, dispatch] = useReducer(reducer, settings) // useReducer(reducer, initialState);
 
   return (
     <MyContext.Provider value={[state, dispatch]}>
