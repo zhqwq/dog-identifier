@@ -12,6 +12,6 @@ Mobile dog breed identifier app based on deep learning developed in Expo. Tip: I
 
 `npm install -g eas-cli`
 
-`eas build --platform android --profile preview`
+`eas build --platform android --profile preview`  
 `eas build --platform ios --profile preview`
 
