@@ -1,7 +1,9 @@
-# 基于 Expo 框架的狗狗品种识别App
+# 基于 Expo 框架的狗狗品种识别App（前端部分）
 
 基于 Expo 框架的狗狗品种识别App
 
+![image](https://user-images.githubusercontent.com/56614895/172662217-056d17fa-458e-477b-97e6-ebc0dbc492d9.png)
+![image](https://user-images.githubusercontent.com/56614895/172662284-4cc449fe-a62a-4db4-94a1-043aeeb1985e.png)
 
 ## 运行
 
@@ -15,6 +17,3 @@
 
 `eas build --platform android --profile preview`  
 
-## PDF报告
-
-[FinalReport.pdf](https://github.com/zhqwq/expo-dog-breed-identifier/files/8863221/Zhang.Kaiwei_2018212778_FinalReport.pdf)
