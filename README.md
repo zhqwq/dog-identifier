@@ -15,6 +15,6 @@
 
 `eas build --platform android --profile preview`  
 
-## PDF report
+## PDF报告
 
-[Zhang Kaiwei_2018212778_FinalReport.pdf](https://github.com/zhqwq/expo-dog-breed-identifier/files/8863221/Zhang.Kaiwei_2018212778_FinalReport.pdf)
+[FinalReport.pdf](https://github.com/zhqwq/expo-dog-breed-identifier/files/8863221/Zhang.Kaiwei_2018212778_FinalReport.pdf)
