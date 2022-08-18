@@ -20,11 +20,9 @@ Expo 框架是基于 React Native 的 Meta Framework, 使用 Expo 可以简化 R
 ## 不同网络训练效果比较
 
 ![image](https://user-images.githubusercontent.com/56614895/185464238-84cfa09c-b94c-4c90-a61b-8d68b1a677a3.png)
-![image](https://user-images.githubusercontent.com/56614895/185464256-d632383a-76ba-4089-a66c-3b53555c4d9a.png)
 ![image](https://user-images.githubusercontent.com/56614895/185464278-15610984-a16e-427c-9472-c708d606978b.png)
-![image](https://user-images.githubusercontent.com/56614895/185464285-cbdc25db-98e2-48f2-abcb-d984b96ca6af.png)
 
-## 随机图片测试
+## 随机图片测试 9/10 准确率
 
 ![image](https://user-images.githubusercontent.com/56614895/185464353-069a0512-6d75-4dc9-a825-be267f3d76e5.png)
 
