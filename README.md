@@ -26,7 +26,7 @@ App.js: 入口文件（主页）
 ## 安装依赖并运行
 
 ```
-npm install
+yarn install
 npx expo start
 ```
 
