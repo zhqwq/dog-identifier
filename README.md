@@ -46,11 +46,11 @@ npx expo start
 ![image](https://user-images.githubusercontent.com/56614895/185464238-84cfa09c-b94c-4c90-a61b-8d68b1a677a3.png)
 ![image](https://user-images.githubusercontent.com/56614895/185464278-15610984-a16e-427c-9472-c708d606978b.png)
 
-## 随机图片测试 9/10 准确率
+## 随机图片测试
 
 ![image](https://user-images.githubusercontent.com/56614895/185464353-069a0512-6d75-4dc9-a825-be267f3d76e5.png)
 
-## Linux Server Response
+## 服务端响应
 
 使用 Python Flask + Gunicorn 搭建接口部署 PyTorch ResNet-34 迁移学习模型到 Linux Server
 
