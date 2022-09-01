@@ -23,6 +23,19 @@ Expo 框架是基于 React Native 的 Meta Framework, 使用 Expo 可以简化 R
 
 App.js: 入口文件（主页）
 
+## 安装依赖并运行
+
+```
+npm install
+npx expo start
+```
+
+## 构建安卓apk文件
+
+`npm install -g eas-cli`
+
+`eas build --platform android --profile preview`  
+
 ## 数据集
 
 数据集源自 Kaggle 平台：https://www.kaggle.com/datasets/gpiosenka/70-dog-breedsimage-data-set
@@ -43,15 +56,5 @@ App.js: 入口文件（主页）
 
 ![image](https://user-images.githubusercontent.com/56614895/185461259-496bf849-46e6-4257-be83-6b560ea68498.png)
 
-## 安装依赖与运行
 
-`npm install -g expo-cli`
-
-`expo start`
-
-## 构建安卓apk文件
-
-`npm install -g eas-cli`
-
-`eas build --platform android --profile preview`  
 
