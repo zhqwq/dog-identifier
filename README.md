@@ -30,11 +30,11 @@ yarn install
 npx expo start
 ```
 
+## 发布
+`npx expo publish`
 ## 构建安卓apk文件
+`npx eas build --platform android --profile preview`  
 
-`npm install -g eas-cli`
-
-`eas build --platform android --profile preview`  
 
 ## 数据集
 
