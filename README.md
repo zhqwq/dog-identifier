@@ -1,4 +1,4 @@
-# 狗品种识别 App（前端部分）
+# 狗品种识别 App
 
 Expo 框架是基于 React Native 的 Meta Framework, 使用 Expo 可以简化 React Native 对 IOS/Android/Web 三端的基本配置进行快速开发。  
 
